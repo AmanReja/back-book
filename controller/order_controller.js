@@ -16,7 +16,7 @@ router.post("/addOrder", async (req, res) => {
     const dataToSave = await data.save();
     res.status(200).json(dataToSave);
 
-    const deleteCart = await CartSchema.findByIdAndDelete(req.body.userid);
+    const deleteCart = await CartSchema.findOne({ userid });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
