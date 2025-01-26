@@ -7,7 +7,7 @@ router.post("/addOrder", async (req, res) => {
   const { bookname, price, quantity, bookimage, authore, offer } = req.body;
   const data = new orderSchema({
     userid: req.body.userid,
-    itemid: req.body.itemid,
+    totalamount: req.body.totalamount,
     itemquantity: req.body.itemquantity,
     items: [{ bookname, price, quantity, bookimage, authore, offer }]
   });
@@ -16,7 +16,7 @@ router.post("/addOrder", async (req, res) => {
     const dataToSave = await data.save();
     res.status(200).json(dataToSave);
 
-    const deleteCart = await CartSchema.findOne({ userid });
+    const deleteCart = await CartSchema.findOneAndDelete({ userid });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

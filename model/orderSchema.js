@@ -5,7 +5,7 @@ const dataSchema = new mongoose.Schema(
     userid: {
       type: String
     },
-    itemid: {
+    itemquantity: {
       type: Number
     },
     items: [
