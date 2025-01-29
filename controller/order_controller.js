@@ -13,10 +13,10 @@ router.post("/addOrder", async (req, res) => {
   });
 
   try {
+    const userid = res.body;
+    const deleteCart = await CartSchema.deleteMany({ userid });
     const dataToSave = await data.save();
     res.status(200).json(dataToSave);
-
-    const deleteCart = await CartSchema.findOneAndDelete({ userid });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
